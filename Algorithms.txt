@@ -1,0 +1,22 @@
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+the Pseudo code:
+class ListNode:
+    data: int
+    next: ListNode or None
+
+function findMiddleNode(head: ListNode) -> ListNode:
+    // Initialize two pointers, slow and fast
+    slowPointer = head
+    fastPointer = head
+
+    // Traverse the linked list with two pointers
+    while fastPointer is not None and fastPointer.next is not None:
+        // Move slowPointer one step
+        slowPointer = slowPointer.next
+        // Move fastPointer two steps
+        fastPointer = fastPointer.next.next
+
+    // At this point, slowPointer is at the middle (or second middle) node
+    return slowPointer

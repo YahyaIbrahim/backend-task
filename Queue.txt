@@ -1,0 +1,42 @@
+time complexity for Enqueue and Dequeue : O(1)
+
+the Pseudo code:
+class Queue:
+    MAX_SIZE = 100
+
+    // Initialize an empty queue
+    function Queue():
+        self.queue = [None] * MAX_SIZE
+        self.front = -1
+        self.rear = -1
+
+    // Check if the queue is empty
+    function is_empty():
+        return front == -1
+
+    // Check if the queue is full
+    function is_full():
+        return (rear + 1) % MAX_SIZE == front
+
+    // Enqueue an element at the rear of the queue
+    function enqueue(item):
+        if is_full():
+            print("Queue is full. Cannot enqueue.")
+            return
+        if is_empty():
+            front = rear = 0
+        else:
+            rear = (rear + 1) % MAX_SIZE
+        queue[rear] = item
+
+    // Dequeue an element from the front of the queue
+    function dequeue():
+        if is_empty():
+            print("Queue is empty. Cannot dequeue.")
+            return None
+        removed_item = queue[front]
+        if front == rear:
+            front = rear = -1
+        else:
+            front = (front + 1) % MAX_SIZE
+        return removed_item

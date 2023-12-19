@@ -1,0 +1,48 @@
+time complexity for the enqueueWithPriority: O(n)
+time complexity for the dequeueHighestPriority: O(1)
+
+the Pseudo code:
+class MaxPriorityQueue:
+    MAX_SIZE = 100  # Assuming a fixed size for the array
+
+    // Initialize an empty max priority queue
+    function MaxPriorityQueue():
+        self.queue = [None] * MAX_SIZE
+        self.front = -1
+        self.rear = -1
+
+    // Check if the priority queue is empty
+    function is_empty():
+        return front == -1
+
+    // Check if the priority queue is full
+    function is_full():
+        return (rear + 1) % MAX_SIZE == front
+
+    // Enqueue an element with its priority
+    function enqueue_with_priority(item, priority):
+        if is_full():
+            print("Priority queue is full. Cannot enqueue.")
+            return
+        if is_empty():
+            front = rear = 0
+        else:
+            i = rear
+            // Find the correct position based on priority
+            while i >= front and priority > queue[i][1]:
+                queue[(i + 1) % MAX_SIZE] = queue[i]
+                i -= 1
+            rear = (rear + 1) % MAX_SIZE
+        queue[rear] = (item, priority)
+
+    // Dequeue an element with the highest priority
+    function dequeue_highest_priority():
+        if is_empty():
+            print("Priority queue is empty. Cannot dequeue.")
+            return None
+        removed_item = queue[front][0]
+        if front == rear:
+            front = rear = -1
+        else:
+            front = (front + 1) % MAX_SIZE
+        return removed_item
